@@ -10,6 +10,7 @@
     <%= link_to "New adventure", new_adventure_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
+  <%= turbo_stream_from @user %>
   <div id="adventures" class="min-w-full">
     <% @adventures.each do |adventure| %>
       <%= render adventure %>

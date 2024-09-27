@@ -16,7 +16,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-
+    <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
     <%# Includes all stylesheet files in app/views/stylesheets %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
@@ -26,7 +26,7 @@
   <body>
   <nav>
     <% if authenticated? %>
-      <%= Current.user.email_address %>
+      <%= @user.email_address %>
       <%= button_to 'Sign out', session_path, method: :delete %>
     <% end %>
       </nav>
