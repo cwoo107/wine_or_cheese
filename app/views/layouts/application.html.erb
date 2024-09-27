@@ -24,6 +24,12 @@
   </head>
 
   <body>
+  <nav>
+    <% if authenticated? %>
+      <%= Current.user.email_address %>
+      <%= button_to 'Sign out', session_path, method: :delete %>
+    <% end %>
+      </nav>
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
