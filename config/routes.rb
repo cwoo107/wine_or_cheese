@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :responses
+  resources :messages
   resources :adventures
   resource :session
   resources :passwords, param: :token

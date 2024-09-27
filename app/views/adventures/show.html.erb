@@ -6,6 +6,12 @@
     <%= turbo_stream_from @adventure %>
     <%= render @adventure %>
 
+    <%= turbo_stream_from @adventure.messages %>
+    <div id="messages"
+    <%= render @adventure.messages %>
+  </div>
+
+      <%= render partial: 'messages/form', locals: { message: Message.new(adventure_id: @adventure.id) } %>
     <%= link_to "Edit this adventure", edit_adventure_path(@adventure), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to adventures", adventures_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_09_27_164733) do
+ActiveRecord::Schema[8.0].define(version: 2024_09_27_203509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,6 +20,22 @@ ActiveRecord::Schema[8.0].define(version: 2024_09_27_164733) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_adventures_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "adventure_id", null: false
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adventure_id"], name: "index_messages_on_adventure_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.bigint "message_id", null: false
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_responses_on_message_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -40,5 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_09_27_164733) do
   end
 
   add_foreign_key "adventures", "users"
+  add_foreign_key "messages", "adventures"
+  add_foreign_key "responses", "messages"
   add_foreign_key "sessions", "users"
 end
